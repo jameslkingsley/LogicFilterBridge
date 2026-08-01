@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ElectronicsPrinterRecipes>
+    <RecipeData>
+      <PrefabName>ItemKitLogicFilterBridge</PrefabName>
+      <Recipe>
+        <Time>10</Time>
+        <Energy>1000</Energy>
+        <Copper>1</Copper>
+        <Gold>1</Gold>
+      </Recipe>
+    </RecipeData>
+  </ElectronicsPrinterRecipes>
+</GameData>
+

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>Logic Filter Bridge</Name>
+  <Author>James</Author>
+  <ModID>com.james.logicfilterbridge</ModID>
+  <Version>0.1.0</Version>
+  <Description>
+    This is a Plugin Mod.
+    It requires BepInEx with the StationeersLaunchPad plugin.
+    See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
+    Source code and issue tracker: [url=https://github.com/jameslkingsley/LogicFilterBridge]GitHub - Logic Filter Bridge[/url]
+
+    [h1]Logic Filter Bridge[/h1]
+    [i]Expose exactly the devices another data network needs.[/i]
+
+    Logic Filter Bridge adds a three-connector logic device with separate [b]power[/b], [b]data input[/b], and [b]data output[/b] connections. When powered and switched on, devices visible on the input network become transparently accessible from the output network.
+
+    Forwarded devices remain their original live instances. IC10 programs can read, write, batch-select, address by reference ID, and access slots through the bridge as though they were directly connected.
+
+    [hr]
+
+    [h1]Features[/h1]
+
+    [list]
+    [*][b]Transparent forwarding[/b] of real input-side devices
+    [*][b]Mode 0 - All:[/b] forward every visible input-side device
+    [*][b]Mode 1 - Prefab:[/b] filter by PrefabHash using Setting
+    [*][b]Mode 2 - Name:[/b] case-insensitive display-name substring filtering using STR values
+    [*]Preserves devices physically connected to the output network
+    [*]Supports direct, batch, reference-ID, read, write, and slot operations
+    [*]Supports chained bridges while deduplicating repeated paths and terminating cycles
+    [*]Persists configuration across save and reload
+    [*]Server-authoritative multiplayer and dedicated-server support
+    [/list]
+
+    [hr]
+
+    [h1]Crafting and operation[/h1]
+
+    Print the [b]Kit (Logic Filter Bridge)[/b] in an Electronics Printer for 1 g copper and 1 g gold. Printing takes 10 seconds and consumes 1000 J.
+
+    The bridge consumes 10 W. It forwards devices only when fully constructed, powered, switched on, and connected to distinct input and output data networks. Its default Mode is 0, so no IC10 configuration is required for an unfiltered bridge.
+
+    Configure Mode and Setting from an IC Housing on the [b]input network[/b]. The bridge deliberately hides itself from its output network.
+
+    [b]Prefab filter example:[/b]
+    s d0 Mode 1
+    s d0 Setting HASH("StructureGasSensor")
+
+    [b]Name filter example:[/b]
+    s d0 Mode 2
+    s d0 Setting STR("Analyz")
+
+    Stationeers STR values contain at most six ASCII characters. The server and every connecting client must install the same version of this mod.
+
+    [hr]
+
+    [h1]Current model[/h1]
+
+    The current model is a pure runtime copy of the vanilla Logic Mirror. No Stationeers models or textures are distributed with this mod. Contributions providing a bespoke model and visual identity are very welcome.
+  </Description>
+  <ChangeLog>
+    [h3]Version 0.1.0[/h3]
+    [list]
+    [*]Initial public release
+    [*]All, prefab-hash, and name-substring filtering modes
+    [*]Transparent IC10 device access across bridged networks
+    [*]Save persistence and dedicated-server support
+    [/list]
+  </ChangeLog>
+  <InGameDescription><![CDATA[<size="30"><color=#ffa500>Logic Filter Bridge</color></size>
+
+This is a Plugin Mod requiring BepInEx and StationeersLaunchPad.
+Source code: https://github.com/jameslkingsley/LogicFilterBridge
+
+Adds a powered bridge with separate data-input and data-output connectors. Devices visible on the input network are transparently exposed on the output network.
+
+Filter modes:
+0 - All devices
+1 - PrefabHash equals Setting
+2 - Display name contains the STR stored in Setting
+
+The bridge defaults to Mode 0. Supply 10 W and turn it on to forward devices. Configure Mode and Setting from an IC Housing connected to the input network.
+
+The server and every client must install the same mod version.
+
+The current model is a runtime copy of the vanilla Logic Mirror. Bespoke model contributions are welcome.]]></InGameDescription>
+  <WorkshopHandle>0</WorkshopHandle>
+  <Tags>
+    <Tag>StationeersLaunchPad</Tag>
+  </Tags>
+</ModMetadata>

@@ -1,0 +1,88 @@
+name: Bug report
+description: Report reproducible Logic Filter Bridge behavior
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve Logic Filter Bridge. Please remove unrelated mods where practical before reporting a compatibility issue.
+
+  - type: input
+    id: stationeers-build
+    attributes:
+      label: Stationeers build
+      description: Copy the full build/version shown by the game or server log.
+    validations:
+      required: true
+
+  - type: input
+    id: mod-versions
+    attributes:
+      label: Mod environment
+      description: Include the Logic Filter Bridge, BepInEx, and StationeersLaunchPad versions.
+      placeholder: Logic Filter Bridge 0.1.0, BepInEx 5.4.23.3, LaunchPad 0.5.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Game environment
+      options:
+        - Single-player
+        - Listen server
+        - Dedicated server and client
+        - Dedicated server only
+    validations:
+      required: true
+
+  - type: textarea
+    id: wiring
+    attributes:
+      label: Wiring and configuration
+      description: Describe both networks, bridge Mode/Setting/On state, power, and relevant IC10 instructions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Place and power...
+        2. Connect...
+        3. Run...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Paste the smallest useful Player.log or LaunchPad debug-package excerpt. Remove private server details first.
+      render: text
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Installation checks
+      options:
+        - label: The server and every connected client use the same Logic Filter Bridge DLL.
+          required: true
+        - label: Only one LogicFilterBridge.dll exists under the enabled mod directory.
+          required: true

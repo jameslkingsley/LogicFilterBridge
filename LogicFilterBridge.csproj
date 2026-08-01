@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>LogicFilterBridge</AssemblyName>
+    <RootNamespace>LogicFilterBridge</RootNamespace>
+    <Version>0.1.0</Version>
+    <Authors>James</Authors>
+    <Description>A configurable filtered data-network bridge for Stationeers.</Description>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Deterministic>true</Deterministic>
+    <NoWarn>$(NoWarn);MSB3277</NoWarn>
+    <StationeersPath Condition="'$(StationeersPath)' == ''">D:\SteamLibrary\steamapps\common\Stationeers</StationeersPath>
+    <ManagedPath>$(StationeersPath)\rocketstation_Data\Managed</ManagedPath>
+    <BepInExCorePath>$(StationeersPath)\BepInEx\core</BepInExCorePath>
+    <LaunchPadPath>$(StationeersPath)\BepInEx\plugins\StationeersLaunchPad</LaunchPadPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" HintPath="$(ManagedPath)\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="BepInEx" HintPath="$(BepInExCorePath)\BepInEx.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(BepInExCorePath)\0Harmony.dll" Private="false" />
+    <Reference Include="StationeersMods.Interface" HintPath="$(LaunchPadPath)\StationeersMods.Interface.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(ManagedPath)\UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedPath)\UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="UnityEngine.AnimationModule" HintPath="$(ManagedPath)\UnityEngine.AnimationModule.dll" Private="false" />
+    <Reference Include="UnityEngine.PhysicsModule" HintPath="$(ManagedPath)\UnityEngine.PhysicsModule.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="CopyPluginToModRoot" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(MSBuildProjectDirectory)" />
+    <!-- LaunchPad scans the mod directory recursively. Keep exactly one loadable copy. -->
+    <Delete Files="$(TargetPath);$(IntermediateOutputPath)$(TargetFileName)" />
+  </Target>
+</Project>

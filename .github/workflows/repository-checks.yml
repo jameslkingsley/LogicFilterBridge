@@ -1,0 +1,28 @@
+name: Repository checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Validate metadata and LaunchPad structure
+        shell: pwsh
+        run: ./scripts/ValidateRepository.ps1
+
+      - name: Ensure proprietary/generated binaries are not committed
+        shell: pwsh
+        run: |
+          $binaries = @(git ls-files '*.dll' 'bin/**' 'obj/**' 'artifacts/**')
+          if ($binaries.Count -gt 0) {
+            $binaries | ForEach-Object { Write-Error "Generated or proprietary binary tracked: $_" }
+            exit 1
+          }

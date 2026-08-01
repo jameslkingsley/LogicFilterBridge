@@ -1,0 +1,14 @@
+[Bb]in/
+[Oo]bj/
+.vs/
+.idea/
+
+*.user
+*.suo
+*.userprefs
+
+# The local build installs this into the mod root. Release archives are created
+# under artifacts/ and neither generated output belongs in source control.
+/LogicFilterBridge.dll
+/artifacts/
+*.zip
