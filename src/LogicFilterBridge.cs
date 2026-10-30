@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts;
 using Assets.Scripts.GridSystem;
 using Assets.Scripts.Networking;
 using Assets.Scripts.Networks;
@@ -141,7 +142,7 @@ public sealed class LogicFilterBridge : LogicInputBase
     {
         if (logicType == LogicType.Mode)
         {
-            if (!IsStructureCompleted || !NetworkManager.IsServer || double.IsNaN(value) || double.IsInfinity(value))
+            if (!IsStructureCompleted || !GameManager.RunSimulation || double.IsNaN(value) || double.IsInfinity(value))
             {
                 return;
             }
@@ -153,7 +154,7 @@ public sealed class LogicFilterBridge : LogicInputBase
 
         if (logicType == LogicType.Setting)
         {
-            if (IsStructureCompleted && NetworkManager.IsServer)
+            if (IsStructureCompleted && GameManager.RunSimulation)
             {
                 Setting = value;
             }
